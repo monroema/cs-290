@@ -1,0 +1,17 @@
+table,td,tr,th{border-style:solid;
+    border-width: thin;
+    border-color: black;}
+.tdItalics{
+    font-style: italic;
+}
+.tdRed{
+    color:red;
+}
+
+.tdBlue{
+    color:blue;
+}
+
+
+
+
