@@ -6,15 +6,18 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+
+<div id="divHeader">Who wins? Cell content indicates the status of the row entry.</div>
+
 <table>
-    <tr>
+    <thead>
         <th></th>
         <th>Godzilla</th>
         <th>Batman</th>
         <th>Shaq</th>
         <th>Aaron Carter</th>
         <th>Abe Lincoln</th>
-    </tr>
+    </thead>
 
     <tr>
         <td class="tdItalics">Godzilla</td>
@@ -29,38 +32,42 @@
 
     <tr>
         <td class="tdItalics">Batman</td>
-        <td class="tdRed"></td>
-        <td></td>
-        <td class="tdBlue"></td>
-        <td></td>
-        <td></td>
+        <td class="tdRed">Minor Win</td>
+        <td>N/A</td>
+        <td class="tdBlue">Total Victory</td>
+        <td>Total Victory</td>
+        <td>Total Loss</td>
     </tr>
 
     <tr>
         <td class="tdItalics">Shaq</td>
-        <td class="tdRed"></td>
-        <td></td>
-        <td class="tdBlue"></td>
-        <td></td>
-        <td></td>
+        <td class="tdRed">Win</td>
+        <td>Total loss</td>
+        <td class="tdBlue">N/A</td>
+        <td>Minor Loss</td>
+        <td>Unknown</td>
     </tr>
 
     <tr>
         <td class="tdItalics">Aaron Carter</td>
-        <td class="tdRed"></td>
-        <td></td>
-        <td class="tdBlue"></td>
-        <td></td>
-        <td></td>
+        <td class="tdRed">Unknown</td>
+        <td>TotalLoss</td>
+        <td class="tdBlue">Minor Win</td>
+        <td>N/A</td>
+        <td>Unkown</td>
     </tr>
 
     <tr>
         <td class="tdItalics">Abe Lincoln</td>
-        <td class="tdRed"></td>
-        <td></td>
-        <td class="tdBlue"></td>
-        <td></td>
-        <td></td>
+        <td class="tdRed">Unknown</td>
+        <td>Total Victory</td>
+        <td class="tdBlue">Unknown</td>
+        <td>Unknown</td>
+        <td>N/A</td>
+    </tr>
+    <tr id="trFooter">
+        <td colspan="2">Footer 1</td>
+        <td colspan="4">Footer 2</td>
     </tr>
 </table>
 </body>

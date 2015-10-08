@@ -1,9 +1,16 @@
 table,td,tr,th{border-style:solid;
     border-width: thin;
-    border-color: black;}
+    border-color: black;  }
+tr:nth-of-type(even){background-color: lightgreen;}
+
+tr:nth-of-type(2n+1){background-color: lightblue;}
+
+th{background-color: white;}
+
 .tdItalics{
     font-style: italic;
 }
+
 .tdRed{
     color:red;
 }
@@ -11,6 +18,13 @@ table,td,tr,th{border-style:solid;
 .tdBlue{
     color:blue;
 }
+
+#divHeader{position: relative;
+    left: 75px;
+  background-color: white;
+}
+
+#trFooter{background-color: white}
 
 
 
