@@ -26,6 +26,17 @@ th{background-color: white;}
 
 #trFooter{background-color: white}
 
+#divPink{background-color: lightpink;
+position: relative;
+height: 50px;
+width: 60%
+}
+
+#divBlue{background-color: lightblue;
+position: relative;
+left: 8%;
+bottom: 37.5px;
+width: 44%}
 
 
 
