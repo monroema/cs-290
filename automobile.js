@@ -1,3 +1,6 @@
+/*Matt Monroe CS290 Automobile assignment :)
+* As you can see below I called all of functions so we you will see
+* logMe called with true 3 times and false 3 times.*/
 function Automobile( year, make, model, type ) {
     this.year = year; //integer (ex. 2001, 1995)
     this.make = make; //string (ex. Honda, Ford)
@@ -104,6 +107,33 @@ console.log('The care sorted by type are: ');
 for (i in automobiles)
 {
     automobiles[i].logMe(true);
+}
+
+printStars();
+
+printStars();
+sortArr(yearComparator, automobiles);
+console.log('The cars sorted by year are: ');
+for (p in automobiles)
+{
+    automobiles[p].logMe(false);
+}
+console.log('');
+
+sortArr(makeComparator, automobiles);
+console.log('The cars sorted by make are: ');
+for (n in automobiles)
+{
+    automobiles[n].logMe(false);
+}
+
+sortArr(typeComparator,automobiles);
+console.log('');
+console.log('The care sorted by type are: ');
+
+for (i in automobiles)
+{
+    automobiles[i].logMe(false);
 }
 
 printStars();
