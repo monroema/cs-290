@@ -1,83 +1,163 @@
 var table = document.createElement("TABLE");
 
-//create header
-var th1 = document.createElement("th");
-var th2 = document.createElement("th");
-var th3 = document.createElement("th");
-var th4 = document.createElement("th");
+var solidBorder = function (x) {
+    x.style.border = "solid";
+    x.style.borderWidth = "1px";
+}
 
-th1.textContent = "Header 1";
-th2.textContent = "Header 2";
-th3.textContent = "Header 3";
-th4.textContent = "Header 4";
+var collection = [];
 
-table.appendChild(th1);
-table.appendChild(th2);
-table.appendChild(th3);
-table.appendChild(th4);
+for (var i = 0; i < 4; i++) {
+    collection[i] = document.createElement("th");
+}
+
+for (var i = 0; i < collection.length; i++) {
+    collection[i].textContent = "Header " + (i + 1);
+}
+
+for (var i = 0; i < collection.length; i++) {
+    solidBorder(collection[i]);
+}
+
+for (var i = 0; i < collection.length; i++) {
+    table.appendChild(collection[i]);
+}
 
 //create first row
 var tr1 = document.createElement("tr");
 tr1.textContent = "";
 table.appendChild(tr1);
+var row = 1;
 
-var tr11 = document.createElement("td");
-var tr21 = document.createElement("td");
-var tr31 = document.createElement("td");
-var tr41 = document.createElement("td");
+for (var i = 0; i < 4; i++) {
+    collection[i] = document.createElement("td");
+}
 
-tr11.textContent = "1,1";
-tr21.textContent = "2,1";
-tr31.textContent = "3,1";
-tr41.textContent = "4,1";
+for (var i = 0; i < collection.length; i++) {
+    collection[i].textContent = (i + 1) + "," + row;
+}
 
-tr1.appendChild(tr11);
-tr1.appendChild(tr21);
-tr1.appendChild(tr31);
-tr1.appendChild(tr41);
+for (var i = 0; i < collection.length; i++) {
+    solidBorder(collection[i]);
+}
+
+for (var i = 0; i < collection.length; i++) {
+    tr1.appendChild(collection[i]);
+}
 
 //create second row
 var tr2 = document.createElement("tr");
 tr2.textContent = "";
 table.appendChild(tr2);
+row += 1;
 
-var tr12 = document.createElement("td");
-var tr22 = document.createElement("td");
-var tr32 = document.createElement("td");
-var tr42 = document.createElement("td");
+for (var i = 0; i < 4; i++) {
+    collection[i] = document.createElement("td");
+}
 
-tr12.textContent = "1,2";
-tr22.textContent = "2,2";
-tr32.textContent = "3,2";
-tr42.textContent = "4,2";
+for (var i = 0; i < collection.length; i++) {
+    collection[i].textContent = (i + 1) + "," + row;
+}
 
-tr2.appendChild(tr12);
-tr2.appendChild(tr22);
-tr2.appendChild(tr32);
-tr2.appendChild(tr42);
+for (var i = 0; i < collection.length; i++) {
+    solidBorder(collection[i]);
+}
 
-//create second row
+for (var i = 0; i < collection.length; i++) {
+    tr2.appendChild(collection[i]);
+}
+
+//create third row
 var tr3 = document.createElement("tr");
 tr3.textContent = "";
 table.appendChild(tr3);
+row += 1;
 
-var tr13 = document.createElement("td");
-var tr23 = document.createElement("td");
-var tr33 = document.createElement("td");
-var tr43 = document.createElement("td");
+for (var i = 0; i < 4; i++) {
+    collection[i] = document.createElement("td");
+}
 
-tr13.textContent = "1,3";
-tr23.textContent = "2,3";
-tr33.textContent = "3,3";
-tr43.textContent = "4,3";
+for (var i = 0; i < collection.length; i++) {
+    collection[i].textContent = (i + 1) + "," + row;
+}
 
-tr3.appendChild(tr13);
-tr3.appendChild(tr23);
-tr3.appendChild(tr33);
-tr3.appendChild(tr43);
+for (var i = 0; i < collection.length; i++) {
+    solidBorder(collection[i]);
+}
+
+for (var i = 0; i < collection.length; i++) {
+    tr3.appendChild(collection[i]);
+}
 
 table.style.borderStyle = "solid";
 table.style.borderWidth = "1px";
 
-document.body.appendChild(table);
+var btn = document.createElement("BUTTON");
+btn.textContent = "Mark Cell";
 
+
+btn.addEventListener("click", function (event) {
+    curElm.style.backgroundColor = "yellow";
+    event.stopImmediatePropagation();
+});
+document.body.appendChild(table);
+document.body.appendChild(btn);
+
+var curRow = 0;
+var curCol = 0;
+var allElements = document.getElementsByTagName("tr");
+var curElm = allElements[curRow].firstElementChild;
+
+var skinnyBorder = function (x) {
+    x.style.borderWidth = "1px";
+}
+
+var thickBorder = function (x) {
+    x.style.borderWidth = "4px";
+}
+
+thickBorder(curElm);
+
+document.addEventListener("keydown", function (event) {
+    var keyPressed = event.keyCode;
+
+    if (keyPressed == 37) {
+        if (curElm.previousElementSibling != null) {
+            skinnyBorder(curElm);
+            curElm = curElm.previousElementSibling;
+            thickBorder(curElm);
+            curCol -= 1;
+        }
+    }
+    else if (keyPressed == 38) {
+        if (curRow != 0) {
+            curRow -= 1;
+            skinnyBorder(curElm);
+            curElm = allElements[curRow].firstElementChild;
+            for (var x = 0; x < curCol; x++) {
+                curElm = curElm.nextElementSibling;
+            }
+            thickBorder(curElm);
+        }
+    }
+    else if (keyPressed == 39) {
+        if (curElm.nextElementSibling != null) {
+            skinnyBorder(curElm);
+            curElm = curElm.nextElementSibling;
+            thickBorder(curElm);
+            curCol += 1;
+        }
+    }
+    else if (keyPressed == 40) {
+        if (curRow != 2) {
+            curRow += 1;
+            skinnyBorder(curElm);
+            curElm = allElements[curRow].firstElementChild;
+            for (var x = 0; x < curCol; x++) {
+                curElm = curElm.nextElementSibling;
+            }
+            thickBorder(curElm);
+
+        }
+    }
+});
