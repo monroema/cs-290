@@ -118,6 +118,7 @@ var thickBorder = function (x) {
 
 thickBorder(curElm);
 
+//keyboard event listeners
 document.addEventListener("keydown", function (event) {
     var keyPressed = event.keyCode;
 
@@ -161,3 +162,69 @@ document.addEventListener("keydown", function (event) {
         }
     }
 });
+
+
+var btnUp = document.createElement("BUTTON");
+btnUp.textContent = "Move Up";
+btnUp.addEventListener("click", function (event) {
+    if (curRow != 0) {
+        curRow -= 1;
+        skinnyBorder(curElm);
+        curElm = allElements[curRow].firstElementChild;
+        for (var x = 0; x < curCol; x++) {
+            curElm = curElm.nextElementSibling;
+        }
+        thickBorder(curElm);
+        event.stopImmediatePropagation()
+    }
+});
+
+document.body.appendChild(btnUp);
+
+var btnDwn = document.createElement("BUTTON");
+btnDwn.textContent = "Move Down";
+
+btnDwn.addEventListener("click", function (event) {
+    if (curRow != 2) {
+        curRow += 1;
+        skinnyBorder(curElm);
+        curElm = allElements[curRow].firstElementChild;
+        for (var x = 0; x < curCol; x++) {
+            curElm = curElm.nextElementSibling;
+        }
+        thickBorder(curElm);
+        event.stopImmediatePropagation()
+    }
+});
+
+document.body.appendChild(btnDwn);
+
+var btnRt = document.createElement("BUTTON");
+btnRt.textContent = "Move Right";
+
+btnRt.addEventListener("click", function (event) {
+    if (curElm.nextElementSibling != null) {
+        skinnyBorder(curElm);
+        curElm = curElm.nextElementSibling;
+        thickBorder(curElm);
+        curCol += 1;
+    }
+    event.stopImmediatePropagation();
+});
+
+document.body.appendChild(btnRt);
+
+var btnLt = document.createElement("BUTTON");
+btnLt.textContent = "Move Left";
+
+btnLt.addEventListener("click", function (event) {
+    if (curElm.previousElementSibling != null) {
+        skinnyBorder(curElm);
+        curElm = curElm.previousElementSibling;
+        thickBorder(curElm);
+        curCol -= 1;
+    }
+    event.stopImmediatePropagation();
+});
+
+document.body.appendChild(btnLt);
