@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script type = "text/javascript" src="ajax.js"></script>
+</head>
+<body>
+<form>
+    <fieldset>
+        <legend>Get Weather Information Here</legend>
+        <label for="zipCode"><strong>Zip Code</strong></label>
+        <input type="text" name="zip" id="zipCode" onchange="onTextFieldChange()">
+        <label for="cityInput"><strong>City Name</strong></label>
+        <input type="text" name="city" id="cityInput" onchange="onTextFieldChange()">
+        <input type="submit" id="zipCitySubmit">
+    </fieldset>
+</form>
+<div>
+    <h2>Result</h2>
+    <ul>
+        <li><span>City Name:</span><span id="CityName"></span></li>
+        <li><span>Current Temp:</span><span id="temperature"></span></li>
+        <li><span>Wind Speed:</span><span id="wind"></span></li>
+        <li><span>Humidity:</span><span id="humidity"></span></li>
+    </ul>
+</div>
+
+</body>
+</html>
