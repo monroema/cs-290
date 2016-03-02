@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Matt Monroe">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Google Maps API for Dummies</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="public/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="public/css/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="public/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="container">
+
+    <!-- The justified navigation menu is meant for single line per list item.
+         Multiple lines will require custom code not provided by Bootstrap. -->
+    <div class="masthead">
+        <h3 class="text-muted">Google Maps API for Dummies</h3>
+        <nav>
+            <ul class="nav nav-justified">
+                <li><a href="http://52.10.194.81:3000/index.html">Are you ready?</a></li>
+                <li><a href="http://52.10.194.81:3000/starting-a-map.html">Starting a Map</a></li>
+                <li><a href="http://52.10.194.81:3000/the-map-object.html">The Map Object</a></li>
+                <li><a href="http://52.10.194.81:3000/drawing-on-the-map.html">Drawing on the Map</a></li>
+                <li><a href="http://52.10.194.81:3000/other-cool-map-stuff.html">Wrapping Up</a></li>
+                <li class="active"><a href="http://52.10.194.81:3000/reference-material.html">Reference Material</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="jumbotron">
+        <h1>Feel the Power of <strong>Google</strong> Maps</h1>
+        <p class="lead">Below you will find the three things that I referenced for this entire project. When using
+        Maps it is essential that you take your time and really understand what is going on. With all of the
+        callbacks it can get <em>very</em> confusing <em>very</em> fast. I recommend adding each piece and checking
+        after each step. In addition your window size will be very important throughout this process. When you are
+        messing with controls you can easily overlap other controls (I did this twice). Another issue I ran into
+        was trying to connect too many features at once. I wanted a drag-able, mark-able, draw-able, cool-able, and
+        code-able map. Well in the process of trying to find that I created so many bugs I had to settle for less,
+        and the real truth is that if you need that many features, go to maps.google.com. If you need something
+        for a quick reference for people, use the API. I hope you learned a lot while reading this!</p>
+    </div>
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Guides, Who Needs 'em?</h2>
+            <!--p class="text-danger">To get your API key navigate to the blue button below!</p-->
+            <p>In here you will find a link to all their guides! I found these <em>WAY</em> less helpful than the
+                code samples.</p>
+
+            <p><a class="btn btn-primary" href="https://developers.google.com/maps/documentation/javascript/tutorial"
+                  role="button">Guides &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Did Someone Say Code Samples?</h2>
+
+            <p>In this link you will find the sets of sample code. Almost all come with HTML and JavaScript together.
+                This makes it very easy to implement small pieces. The one weakness they have is that they only do one
+                thing at a time, so if you need to combine features you're all on your own.</p>
+
+            <p><a class="btn btn-primary" href="https://developers.google.com/maps/documentation/javascript/examples/"
+                  role="button">Code Samples &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Are These De-Reference Materials?</h2>
+
+            <p>This is the link to all their reference material! It is incredibly dry, so you might need a beer to
+                finish reading the whole thing. Happy Coding!</p>
+
+            <p><a class="btn btn-primary"
+                  href="https://developers.google.com/maps/documentation/javascript/3.exp/reference" role="button">Reference
+                Material &raquo;</a></p>
+        </div>
+    </div>
+    <div id="map"></div>
+    <script type="text/javascript">
+
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 44.567, lng: -123.283},
+                zoom: 8
+            });
+            var goldStar = {
+                path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+                fillColor: 'yellow',
+                fillOpacity: 0.8,
+                scale: 1,
+                strokeColor: 'gold',
+                strokeWeight: 14
+            };
+
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                icon: goldStar,
+                map: map
+            });
+        }
+
+    </script>
+    <script async defer
+
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWxz0AlHuKbx5Zq-PluTyeBCJ3PrFkfso&callback=initMap">
+    </script>
+
+    <!-- Site footer -->
+    <footer class="footer">
+        <p>Matt Monroe CS290 Fall 2015<br>
+            Powered by <a href="http://getbootstrap.com/">Bootstrap</a>, <a
+                    href="https://developers.google.com/maps/documentation/javascript/">Google</a>, and <a
+                    href="https://nodejs.org/en/">Node.js</a></p>
+    </footer>
+
+</div>
+<!-- /container -->
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="public/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

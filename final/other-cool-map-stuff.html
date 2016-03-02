@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Matt Monroe">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Google Maps API for Dummies</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="public/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="public/css/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="public/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="container">
+
+    <!-- The justified navigation menu is meant for single line per list item.
+         Multiple lines will require custom code not provided by Bootstrap. -->
+    <div class="masthead">
+        <h3 class="text-muted">Google Maps API for Dummies</h3>
+        <nav>
+            <ul class="nav nav-justified">
+                <li><a href="http://52.10.194.81:3000/index.html">Are you ready?</a></li>
+                <li><a href="http://52.10.194.81:3000/starting-a-map.html">Starting a Map</a></li>
+                <li><a href="http://52.10.194.81:3000/the-map-object.html">The Map Object</a></li>
+                <li><a href="http://52.10.194.81:3000/drawing-on-the-map.html">Drawing on the Map</a></li>
+                <li class="active"><a href="http://52.10.194.81:3000/other-cool-map-stuff.html">Wrapping Up</a></li>
+                <li><a href="http://52.10.194.81:3000/reference-material.html">Reference Material</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <h1>Putting it all Together</h1>
+
+        <p class="lead">Up to this point a lot of the <strong>stuff</strong> we did was paraphrased from Google. In this
+            page we will be putting together several aspects that they leave separate into a function map for your
+            application. Sit back, relax, and enjoy. On this map we have added sets of features together. We are
+        first displaying the map between two points. Second we have included two way points along the way labeled
+        B and C. Finally we have made each of the markers draggable. When you drag them the route is automagically (JK)
+        reset. See source code as an image below. First set of lines is creating the map object. After that we create
+        the directions service. When we create it this way we are creating the standard object with default
+        properties. On the other hand when we are creating the directionsDisplay service we are not going with
+        the default behavior. We are passing in <span class="purp">draggable:</span> <span class="orange"> true</span>
+        which is making it available to be dragged to change the route. Another new piece is the onChangeHandler, which
+        will call calculateAndDisplayRoute which will actually redraw the map. Again inside of the
+        calculateAndDipslayRoute we are not passing the standard params, we have included more options. We have
+        added the <span class="purp">waypoint</span> property which is where the middle waypoints live. There is much
+        more we can do with this map but this is really all we have time for.</p>
+    </div>
+
+    <!-- Example row of columns -->
+    <div class="row">
+
+    </div>
+    <div class="col-lg-4">
+        <input id="startingAddress" type="text" value="Corvallis, OR">
+        <input class="btn btn-primary" id="startingSubmit" type="button" value="Starting Location">
+
+    </div>
+    <div class="col-lg-4">
+        <input id="endingAddress" type="text" value="Denver, CO">
+        <input class="btn btn-primary" id="endingSubmit" type="button" value="Ending Location">
+    </div>
+    <div id="map"></div>
+    <script type="text/javascript">
+
+        function initMap() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: {lat: 41.85, lng: -87.65}
+            });
+
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                draggable: true,
+                map: map,
+                panel: document.getElementById('right-panel')
+            });
+
+
+            directionsDisplay.setMap(map);
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+            var onChangeHandler = function () {
+                calculateAndDisplayRoute(directionsService, directionsDisplay);
+            };
+            document.getElementById('startingSubmit').addEventListener('click', onChangeHandler);
+            document.getElementById('endingSubmit').addEventListener('click', onChangeHandler);
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+            directionsService.route({
+                origin: document.getElementById('startingAddress').value,
+                waypoints: [{location: 'Boise, ID'}, {location: 'Sioux Falls, SD'}],
+                destination: document.getElementById('endingAddress').value,
+                travelMode: google.maps.TravelMode.DRIVING
+            }, function (response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+    </script>
+    <script async defer
+
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWxz0AlHuKbx5Zq-PluTyeBCJ3PrFkfso&callback=initMap">
+    </script>
+<div class="row">
+    <img src="img/draggable-map.pmg.PNG" width="653" height="676">
+</div>
+    <!-- Site footer -->
+    <footer class="footer">
+        <p>Matt Monroe CS290 Fall 2015<br>
+            Powered by <a href="http://getbootstrap.com/">Bootstrap</a>, <a
+                    href="https://developers.google.com/maps/documentation/javascript/">Google</a>, and <a
+                    href="https://nodejs.org/en/">Node.js</a></p>
+    </footer>
+
+</div>
+<!-- /container -->
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="public/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

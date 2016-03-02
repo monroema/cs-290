@@ -1,27 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <script type = "text/javascript" src="ajax.js"></script>
+    <link rel="stylesheet" href="ajax.css" type="text/css">
+    <script type="text/javascript" src="ajax.js"></script>
 </head>
 <body>
-<form>
-    <fieldset>
-        <legend>Get Weather Information Here</legend>
-        <label for="zipCode"><strong>Zip Code</strong></label>
-        <input type="text" name="zip" id="zipCode" onchange="onTextFieldChange()">
-        <label for="cityInput"><strong>City Name</strong></label>
-        <input type="text" name="city" id="cityInput" onchange="onTextFieldChange()">
+
+<div id="weatherForm">
+    <legend>Get Weather Information Here</legend>
+    <form>
+        <p>
+            <label for="zipCode">Zip Code</label>
+            <input type="text" name="zip" id="zipCode" onchange="onTextFieldChange()">
+            <label for="cityInput">City Name</label>
+            <input type="text" name="city" id="cityInput" onchange="onTextFieldChange()">
+        </p>
+        <br>
         <input type="submit" id="zipCitySubmit">
-    </fieldset>
-</form>
-<div>
-    <h2>Result</h2>
+    </form>
+</div>
+
+<div id="addressForm">
+    <legend>Address Post Send Form</legend>
+    <form>
+        <p>
+            <label for="firstName">First Name</label>
+            <input type="text" name="fName" id="firstName" onchange="formNotFilledOut()">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lName" id="lastName" onchange="formNotFilledOut()">
+        </p>
+
+        <p>
+            <label for="streetNumber">Street Number </label>
+            <input type="text" name="sNumber" id="streetNumber" onchange="formNotFilledOut()">
+            <label for="streetName">Street Name</label>
+            <input type="text" name="sName" id="streetName" onchange="formNotFilledOut()">
+        </p>
+
+        <p>
+            <label for="cityA">City Name</label>
+            <input type="text" name="cName" id="cityA" onchange="formNotFilledOut()">
+            <label for="stateCode">State Code</label>
+            <input type="text" name="sCode" id="stateCode" onchange="formNotFilledOut()">
+        </p>
+
+        <p>
+            <label for="zipCd">Zip Code</label>
+            <input type="text" name="zCode" id="zipCd" onchange="formNotFilledOut()">
+        </p>
+        <br>
+        <input type="submit" id="addressSubmit" disabled="true">
+
+    </form>
+</div>
+
+<div id="weatherDiv" hidden="true">
+    <h2>Weather Result</h2>
     <ul>
-        <li><span>City Name:</span><span id="CityName"></span></li>
-        <li><span>Current Temp:</span><span id="temperature"></span></li>
-        <li><span>Wind Speed:</span><span id="wind"></span></li>
-        <li><span>Humidity:</span><span id="humidity"></span></li>
+        <li><span>City Name: </span><span id="CityName"></span></li>
+        <li><span>Current Temp: </span><span id="temperature"></span></li>
+        <li><span>Wind Speed: </span><span id="wind"></span></li>
+        <li><span>Humidity: </span><span id="humidity"></span></li>
+    </ul>
+</div>
+
+<div id="addressDiv" hidden="true">
+    <h2>Address Result</h2>
+    <ul>
+        <li><span id="nameConcat"></span></li>
+        <li><span id="addressLine1"></span></li>
+        <li><span id="addressLine2"></span></li>
+
     </ul>
 </div>
 

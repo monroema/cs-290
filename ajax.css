@@ -1,0 +1,43 @@
+form {
+    display: table;
+    border-style: solid
+}
+
+p {
+    display: table-row;
+}
+
+label {
+    display: table-cell;
+    margin: 10px;
+}
+
+input {
+    display: table-cell;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin: 2px;
+}
+
+legend {
+    font-size: x-large;
+    font-style: oblique;
+}
+
+label {
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    font-weight: bold;
+}
+#addressDiv{
+    background-color: lightyellow;
+}
+#weatherDiv{
+    background-color: lawngreen;
+}
